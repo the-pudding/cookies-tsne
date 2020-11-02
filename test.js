@@ -49,10 +49,30 @@ d3.csv('oreos_tsn.csv', function (error, data) {
     .attr('cy', function (d) {
       return yScale(+d.y);
     })
-    .attr('r', 2)
+    .attr('r', d => {
+      if (d.question.includes('mustard')) {
+        return 6
+      } else {
+        return 2
+      }
+    })
     .attr('class', 'circles-data')
     .style('fill', '#F9F7F1')
-    .attr('stroke', 'black')
+    .attr('stroke', d => {
+      if (d.question.includes('mustard')) {
+        console.log('nice')
+        return 'red'
+      } else {
+        return 'black'
+      }
+    })
+    .attr('stroke-width', d => {
+      if (d.question.includes('mustard')) {
+        return '3px'
+      } else {
+        return '1px'
+      }
+    })
 
 
   d3.selectAll("circle.circles-data")
